@@ -6,5 +6,7 @@ user_data = <<-EOF
  sudo systemctl enable httpd
  sudo systemctl restart httpd
  sudo chmod 766 /var/www/html/index.html
- sudo echo "<html><body><h1>Welcome to Terraform Scaling.</h1></body></html>"
->/var/www/html/index.html
+ chkconfig httpd on
+cd /var/www/html
+git clone https://github.com/CleverProgrammers/pwj-netflix-clone.git
+mv pwj-netflix-clone/* .
