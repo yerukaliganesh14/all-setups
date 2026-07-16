@@ -6,8 +6,8 @@ sudo mv kops /usr/local/bin/kops
 chmod +x kubectl
 mv kubectl /usr/local/bin/kubectl
 
-aws s3api create-bucket --bucket ganesh12.mybucket --region us-east-1
-aws s3api put-bucket-versioning --bucket ganesh12.mybucket --region us-east-1 --versioning-configuration Status=Enabled
-export KOPS_STATE_STORE=s3://ganesh12.mybucket
+aws s3api create-bucket --bucket ganesh12.flm --region us-east-1
+aws s3api put-bucket-versioning --bucket ganesh12.flm --region us-east-1 --versioning-configuration Status=Enabled
+export KOPS_STATE_STORE=s3://ganesh12.flm
 kops create cluster --name ganeshcc.k8s.local --zones us-east-1a,us-east-1b --master-count=1 --master-size t2.large --master-volume-size=30 --node-count=2 --node-size t2.medium --node-volume-size=20
 kops update cluster --name ganeshcc.k8s.local --yes --admin
