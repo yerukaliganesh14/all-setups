@@ -9,5 +9,5 @@ mv kubectl /usr/local/bin/kubectl
 aws s3api create-bucket --bucket ganesh12.myckucket.1212 --region us-east-1
 aws s3api put-bucket-versioning --bucket ganesh12.myckucket.1212 --region us-east-1 --versioning-configuration Status=Enabled
 export KOPS_STATE_STORE=s3://ganesh12.myckucket.1212
-kops create cluster --name ganeshcc.k8s.local --zones us-east-1a,us-east-1b --master-count=1 --master-size t2.large --master-volume-size=30 --node-count=2 --node-size t2.medium --node-volume-size=20
+kops create cluster --name ganeshcc.k8s.local --zones us-east-1a,us-east-1b --master-count=1 --master-size t3.large --master-volume-size=30 --node-count=2 --node-size t2.medium --node-volume-size=20
 kops update cluster --name ganeshcc.k8s.local --yes --admin
