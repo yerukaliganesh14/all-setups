@@ -1,0 +1,22 @@
+#Steps to create user in cluster
+mkdir ganesh
+cd ganesh/
+#generate key
+openssl genrsa -out ganesh.key 2048
+ll
+cat ganesh.key
+#generate CSR(client sign-in request)
+openssl req -new ganesh.key ganesh.csr -subj "/CN=ganesh/O=group1"
+ll
+#Command to generate certificate
+openssl x509 -req -in ganesh.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -Out ganesh.crt -days 500
+#create user by using the certificate
+kubcet config set-credentials ganesh --client-certificate=ganesh.crt --client-key=ganesh.key
+#attach the user to context to use the user
+kubectl config set-context ganesh-context --cluster=minikube --user=ganesh
+#To see the context
+kubectl config view
+#to use the context(user)
+kubectl config use-context ganesh-context
+kubectl config view
+
